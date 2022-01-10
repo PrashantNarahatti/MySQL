@@ -49,6 +49,7 @@ CREATE TABLE `company`.`company_details` (
   PRIMARY KEY (`p_id`, `p_name`, `p_birthPlace`, `p_corona`, `p_age`, `p_buNo`));
 
  select * from patient_details;
+ desc patient_details;
 
   
   
