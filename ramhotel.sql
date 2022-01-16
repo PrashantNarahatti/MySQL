@@ -239,3 +239,27 @@ SELECT AVG(likes)AS Avarge_Likes,singer FROM songs_details WHERE singer IN('The 
 SELECT AVG(likes)AS Avarge_Likes,genre FROM songs_details WHERE genre IN('Rock','sad') GROUP BY genre;
 -- no of songs in each genre having count greaterthan 3
 SELECT COUNT(name) AS No_Of_Songs,genre FROM songs_details GROUP BY genre HAVING No_Of_Songs>1;
+
+SET AUTOCOMMIT=0;
+
+SELECT * FROM songs_details;
+
+INSERT INTO songs_details(id,name,singer,likes,price,lang)VALUE(15,'Let me Know','Alan Walker',56000,450,'English');
+
+COMMIT;
+UPDATE songs__details SET alubm = '50 Shades' WHERE id=15;
+SAVEPOINT A;
+UPDATE songs__details SET genre ='pop' WHERE id=15;
+SAVEPOINT B;
+ROLLBACK TO A;
+
+DELETE FROM songs_details WHERE id=3;
+ROLLBACK ;
+
+SELECT USER();
+SELECT USER,HOST FROM mysql.user;
+
+GRANT SELECT,CREATE ON songs.songs_details TO 'TempUser'@'localhost';
+
+SHOW GRANTs FOR 'TempUser'@'localhost';
+REVOKE CREATE ON songs.songs_details FROM 'TempUser'@'localhost';
